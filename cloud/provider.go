@@ -113,6 +113,9 @@ func GetDefaultPricingData(fname string) (*CustomPricing, error) {
 		if err != nil {
 			return nil, err
 		}
+		if customPricing.Storage == "" {
+			customPricing.Storage = "0.00005479452" // Default storage pricing added in a later release, this is for backwards compatibility.
+		}
 		return customPricing, nil
 	} else if os.IsNotExist(err) {
 		c := &CustomPricing{
